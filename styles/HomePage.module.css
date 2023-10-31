@@ -1,0 +1,16 @@
+.image__gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
+.image__gallery > * {
+  border-radius: 1rem;
+  border: 1px solid rgb(0, 0, 0);
+}
+
+/* Make first image size larger inside image__gallery for making it featured image. Its height & width both will be equal to the 2 times larger size of regular images */
+.image__gallery > *:first-child {
+  flex-basis: 200%;
+}
