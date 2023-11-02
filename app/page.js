@@ -8,6 +8,10 @@ export default function Home() {
         <div>N Selected Delete</div>
       </div>
       <div className={styles.image__gallery}>
+        {/* <img
+        alt="image"
+        src="/images/image-1.webp"
+        /> */}
         <Image
           src="/images/image-1.webp"
           alt="Image 1"
