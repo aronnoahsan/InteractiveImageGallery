@@ -7,77 +7,86 @@ export default function Home() {
       <div>
         <div>N Selected Delete</div>
       </div>
-      <div className={styles.image__gallery}>
-        {/* <img
+      <div className={styles.container}>
+        <div className={styles.image__gallery}>
+          {/* <img
         alt="image"
         src="/images/image-1.webp"
         /> */}
-        <Image
-          src="/images/image-1.webp"
-          alt="Image 1"
-          width={200}
-          height={200}
-        />
-        <Image
-          src="/images/image-2.webp"
-          alt="Image 1"
-          width={200}
-          height={200}
-        />
-        <Image
-          src="/images/image-3.webp"
-          alt="Image 1"
-          width={200}
-          height={200}
-        />
-        <Image
-          src="/images/image-4.webp"
-          alt="Image 1"
-          width={200}
-          height={200}
-        />
-        <Image
-          src="/images/image-5.webp"
-          alt="Image 1"
-          width={200}
-          height={200}
-        />
-        <Image
-          src="/images/image-6.webp"
-          alt="Image 1"
-          width={200}
-          height={200}
-        />
-        <Image
-          src="/images/image-7.webp"
-          alt="Image 1"
-          width={200}
-          height={200}
-        />
-        <Image
-          src="/images/image-8.webp"
-          alt="Image 1"
-          width={200}
-          height={200}
-        />
-        <Image
-          src="/images/image-9.webp"
-          alt="Image 1"
-          width={200}
-          height={200}
-        />
-        <Image
-          src="/images/image-10.jpeg"
-          alt="Image 1"
-          width={200}
-          height={200}
-        />
-        <Image
-          src="/images/image-11.jpeg"
-          alt="Image 11"
-          width={200}
-          height={200}
-        />
+          <Image
+            src="/images/image-1.webp"
+            alt="Image 1"
+            width={200}
+            height={200}
+            draggable={true}
+          />
+          <Image
+            src="/images/image-2.webp"
+            alt="Image 1"
+            width={200}
+            height={200}
+            draggable={true}
+          />
+          <Image
+            src="/images/image-3.webp"
+            alt="Image 1"
+            width={200}
+            height={200}
+            draggable={true}
+          />
+          <Image
+            src="/images/image-4.webp"
+            alt="Image 1"
+            width={200}
+            height={200}
+            draggable={true}
+          />
+          <Image
+            src="/images/image-5.webp"
+            alt="Image 1"
+            width={200}
+            height={200}
+            draggable={true}
+          />
+          <Image
+            src="/images/image-6.webp"
+            alt="Image 1"
+            width={200}
+            height={200}
+            draggable={true}
+          />
+          <Image
+            src="/images/image-7.webp"
+            alt="Image 1"
+            width={200}
+            height={200}
+            draggable={true}
+          />
+          <Image
+            src="/images/image-8.webp"
+            alt="Image 1"
+            width={200}
+            height={200}
+          />
+          <Image
+            src="/images/image-9.webp"
+            alt="Image 1"
+            width={200}
+            height={200}
+          />
+          <Image
+            src="/images/image-10.jpeg"
+            alt="Image 1"
+            width={200}
+            height={200}
+          />
+          <Image
+            src="/images/image-11.jpeg"
+            alt="Image 11"
+            width={200}
+            height={200}
+          />
+        </div>
       </div>
     </main>
   );
