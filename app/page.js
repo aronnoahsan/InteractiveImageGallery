@@ -2,6 +2,74 @@ import Image from "next/image";
 import styles from "@/styles/HomePage.module.css";
 
 export default function Home() {
+  const images = [
+    {
+      id: 1,
+      src: "/images/image-1.webp",
+    },
+    {
+      id: 2,
+      src: "/images/image-2.webp",
+    },
+    {
+      id: 3,
+      src: "/images/image-3.webp",
+    },
+    {
+      id: 4,
+      src: "/images/image-4.webp",
+    },
+    {
+      id: 5,
+      src: "/images/image-5.webp",
+    },
+    {
+      id: 6,
+      src: "/images/image-6.webp",
+    },
+    {
+      id: 7,
+      src: "/images/image-7.webp",
+    },
+    {
+      id: 8,
+      src: "/images/image-8.webp",
+    },
+    {
+      id: 9,
+      src: "/images/image-9.webp",
+    },
+    {
+      id: 10,
+      src: "/images/image-10.jpeg",
+    },
+    {
+      id: 11,
+      src: "/images/image-11.jpeg",
+    },
+  ];
+  function ImageMap() {
+    return images.map((image) => {
+      return (
+        <Image
+          key={image.id}
+          src={image.src}
+          alt={`image ${image.id}`}
+          width={200}
+          height={200}
+          draggable={true}
+        />
+      );
+    });
+  }
+  function deleteImageById(id) {
+    const newImages = images.filter((image) => image.id !== id);
+    console.log(newImages);
+  }
+  function countSelectedImageNumber() {
+    const selectedImages = images.filter((image) => image.selected);
+    return selectedImages.length;
+  }
   return (
     <main>
       <div>
@@ -9,83 +77,7 @@ export default function Home() {
       </div>
       <div className={styles.container}>
         <div className={styles.image__gallery}>
-          {/* <img
-        alt="image"
-        src="/images/image-1.webp"
-        /> */}
-          <Image
-            src="/images/image-1.webp"
-            alt="Image 1"
-            width={200}
-            height={200}
-            draggable={true}
-          />
-          <Image
-            src="/images/image-2.webp"
-            alt="Image 1"
-            width={200}
-            height={200}
-            draggable={true}
-          />
-          <Image
-            src="/images/image-3.webp"
-            alt="Image 1"
-            width={200}
-            height={200}
-            draggable={true}
-          />
-          <Image
-            src="/images/image-4.webp"
-            alt="Image 1"
-            width={200}
-            height={200}
-            draggable={true}
-          />
-          <Image
-            src="/images/image-5.webp"
-            alt="Image 1"
-            width={200}
-            height={200}
-            draggable={true}
-          />
-          <Image
-            src="/images/image-6.webp"
-            alt="Image 1"
-            width={200}
-            height={200}
-            draggable={true}
-          />
-          <Image
-            src="/images/image-7.webp"
-            alt="Image 1"
-            width={200}
-            height={200}
-            draggable={true}
-          />
-          <Image
-            src="/images/image-8.webp"
-            alt="Image 1"
-            width={200}
-            height={200}
-          />
-          <Image
-            src="/images/image-9.webp"
-            alt="Image 1"
-            width={200}
-            height={200}
-          />
-          <Image
-            src="/images/image-10.jpeg"
-            alt="Image 1"
-            width={200}
-            height={200}
-          />
-          <Image
-            src="/images/image-11.jpeg"
-            alt="Image 11"
-            width={200}
-            height={200}
-          />
+          <ImageMap />
         </div>
       </div>
     </main>
