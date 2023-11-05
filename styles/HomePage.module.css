@@ -7,23 +7,65 @@
 .image__gallery {
   display: grid;
   gap: 1rem;
-  /* grid-template-rows: repeat(5, 2fr); */
   grid-template-columns: repeat(5, 2fr);
   padding: 1rem;
-  border: 1px solid rgb(0, 0, 0);
+  border: 1px solid rgb(153, 153, 153);
   border-radius: 2rem;
 }
 
-.image__gallery > * {
+.image__gallery > div > div > * {
   border-radius: 1rem;
-  border: 1px solid rgb(0, 0, 0);
+  border: 1px solid rgb(153, 153, 153);
 }
 
-/* Make first image size larger inside image__gallery for making it featured image. Its height & width both will be equal to the 2 times larger size of regular images */
+/* Hover effect for every image, make image darker */
+.image__gallery > *:hover {
+  filter: brightness(0.8);
+  cursor: pointer;
+}
+
+/* Make first image fetured image */
 .image__gallery > *:first-child {
-  /* flex-basis: 200%; */
   grid-row: span 2;
   grid-column: span 2;
+}
+.image__gallery > *:first-child > div > img {
   width: 100%;
   height: 100%;
+  object-fit: cover;
 }
+
+/* Check box visible for every div on hover or input is checked */
+/* .image__gallery > *:hover > input, */
+/* .image__gallery > * > input:checked {
+  display: block;
+} */
+/* input checkbox visible when it's hovered */
+/* .image__gallery > * > input:hover {
+  display: block;
+} */
+/* Styles for the div which has check marked input checkbox */
+/* .image__gallery > * > input:checked ~ div {
+  filter: brightness(0.5);
+} */
+/* .image__wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+} */
+/* postion input inside the top left corner of the div with 1rem space */
+/* .image__gallery > div > div > input[type="checkbox"] {
+  display: block;
+  position: relative;
+  top: 2rem;
+  left: 1rem;
+  width: 1rem;
+  height: 1rem;
+} */
+
+/* .image__gallery > div:hover > input {
+  display: block;
+}
+.image__gallery > * > input:checked ~ div {
+  filter: brightness(0.8);
+} */

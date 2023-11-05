@@ -33,17 +33,18 @@ export default function Home() {
       transition,
     };
     return (
-      <Image
-        ref={setNodeRef}
-        {...attributes}
-        {...listeners}
-        style={style}
-        src={image.src}
-        alt={`image ${image.id}`}
-        width={200}
-        height={200}
-        draggable={true}
-      />
+      <div ref={setNodeRef} {...attributes} {...listeners} style={style}>
+        <div className={styles.image__wrapper}>
+          {/* <input type="checkbox" checked={image.selected} id={image.id} /> */}
+          <Image
+            src={image.src}
+            alt={`image ${image.id}`}
+            width={150}
+            height={150}
+            draggable={true}
+          />
+        </div>
+      </div>
     );
   }
 
@@ -60,7 +61,10 @@ export default function Home() {
     const selectedImages = images.filter((image) => image.selected);
     return selectedImages.length;
   }
-
+  function getCheckedInputIds() {
+    const selectedImages = images.filter((image) => image.selected);
+    return selectedImages.map((image) => image.id);
+  }
   return (
     <main>
       <div>
