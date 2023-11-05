@@ -1,65 +1,55 @@
+"use client";
 import Image from "next/image";
 import styles from "@/styles/HomePage.module.css";
+import { DndContext, closestCenter } from "@dnd-kit/core";
+import {
+  SortableContext,
+  arrayMove,
+  rectSortingStrategy,
+  useSortable,
+} from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
+import { useState } from "react";
+import data from "@/data/data";
 
 export default function Home() {
-  const images = [
-    {
-      id: 1,
-      src: "/images/image-1.webp",
-    },
-    {
-      id: 2,
-      src: "/images/image-2.webp",
-    },
-    {
-      id: 3,
-      src: "/images/image-3.webp",
-    },
-    {
-      id: 4,
-      src: "/images/image-4.webp",
-    },
-    {
-      id: 5,
-      src: "/images/image-5.webp",
-    },
-    {
-      id: 6,
-      src: "/images/image-6.webp",
-    },
-    {
-      id: 7,
-      src: "/images/image-7.webp",
-    },
-    {
-      id: 8,
-      src: "/images/image-8.webp",
-    },
-    {
-      id: 9,
-      src: "/images/image-9.webp",
-    },
-    {
-      id: 10,
-      src: "/images/image-10.jpeg",
-    },
-    {
-      id: 11,
-      src: "/images/image-11.jpeg",
-    },
-  ];
+  const [images, setImages] = useState(data);
+  function onDragEnd(event) {
+    const { active, over } = event;
+    if (active.id === over.id) return;
+    setImages((images) => {
+      const oldIndex = images.findIndex((image) => image.id === active.id);
+      const newIndex = images.findIndex((image) => image.id === over.id);
+      return arrayMove(images, oldIndex, newIndex);
+    });
+  }
+
+  function Picture({ image }) {
+    const { attributes, listeners, setNodeRef, transform, transition } =
+      useSortable({ id: image.id });
+
+    const style = {
+      transform: CSS.Transform.toString(transform),
+      transition,
+    };
+    return (
+      <Image
+        ref={setNodeRef}
+        {...attributes}
+        {...listeners}
+        style={style}
+        src={image.src}
+        alt={`image ${image.id}`}
+        width={200}
+        height={200}
+        draggable={true}
+      />
+    );
+  }
+
   function ImageMap() {
     return images.map((image) => {
-      return (
-        <Image
-          key={image.id}
-          src={image.src}
-          alt={`image ${image.id}`}
-          width={200}
-          height={200}
-          draggable={true}
-        />
-      );
+      return <Picture key={image.id} image={image} />;
     });
   }
   function deleteImageById(id) {
@@ -70,6 +60,7 @@ export default function Home() {
     const selectedImages = images.filter((image) => image.selected);
     return selectedImages.length;
   }
+
   return (
     <main>
       <div>
@@ -77,7 +68,11 @@ export default function Home() {
       </div>
       <div className={styles.container}>
         <div className={styles.image__gallery}>
-          <ImageMap />
+          <DndContext onDragEnd={onDragEnd} collisionDetection={closestCenter}>
+            <SortableContext strategy={rectSortingStrategy} items={images}>
+              <ImageMap />
+            </SortableContext>
+          </DndContext>
         </div>
       </div>
     </main>
