@@ -4,3 +4,7 @@
   justify-content: space-between;
   gap: 1rem;
 }
+.delete__button {
+  color: red;
+  cursor: pointer;
+}

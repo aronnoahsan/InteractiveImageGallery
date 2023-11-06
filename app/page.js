@@ -15,8 +15,8 @@ import HeadSection from "@/component/HeadSection";
 
 export default function Home() {
   const [images, setImages] = useState(data);
-  const slecetedImages = [];
-  const [selectedItems, setSelectedItems] = useState([]);
+  const [selectedImages, setSelectedImages] = useState([]); // [1,2,3,4,5
+  // const selectedImages = [];
   function onDragEnd(event) {
     const { active, over } = event;
     if (active.id === over.id) return;
@@ -39,14 +39,13 @@ export default function Home() {
       const id = event.target.id;
       const isChecked = event.target.checked;
       if (isChecked) {
-        slecetedImages.push(id);
+        selectedImages.push(id);
       } else {
-        const index = slecetedImages.indexOf(id);
+        const index = selectedImages.indexOf(id);
         if (index > -1) {
-          slecetedImages.splice(index, 1);
+          selectedImages.splice(index, 1);
         }
       }
-      setSelectedItems(slecetedImages);
     }
 
     return (
@@ -77,18 +76,20 @@ export default function Home() {
       return <Picture key={image.id} image={image} />;
     });
   }
-  function deleteImageById(id) {
-    const newImages = images.filter((image) => image.id !== id);
-    console.log(newImages);
+  // function for deleting images by selectedImages array
+  function deleteImages() {
+    selectedImages.forEach((id) => {
+      const newImages = images.filter((image) => image.id !== id);
+      setImages(newImages);
+    });
   }
-
   return (
     <main>
       <div className={styles.container}>
         <div className={styles.whole__section}>
           <HeadSection
-            selectedItems={selectedItems}
-            deleteImageById={deleteImageById}
+            selectedItems={selectedImages}
+            deleteFunction={deleteImages}
           />
           <div className={styles.image__gallery}>
             <DndContext
