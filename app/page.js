@@ -11,9 +11,12 @@ import {
 import { CSS } from "@dnd-kit/utilities";
 import { useState } from "react";
 import data from "@/data/data";
+import HeadSection from "@/component/HeadSection";
 
 export default function Home() {
   const [images, setImages] = useState(data);
+  const slecetedImages = [];
+  const [selectedItems, setSelectedItems] = useState([]);
   function onDragEnd(event) {
     const { active, over } = event;
     if (active.id === over.id) return;
@@ -32,16 +35,37 @@ export default function Home() {
       transform: CSS.Transform.toString(transform),
       transition,
     };
+    function handleCheckboxClick(event) {
+      const id = event.target.id;
+      const isChecked = event.target.checked;
+      if (isChecked) {
+        slecetedImages.push(id);
+      } else {
+        const index = slecetedImages.indexOf(id);
+        if (index > -1) {
+          slecetedImages.splice(index, 1);
+        }
+      }
+      setSelectedItems(slecetedImages);
+    }
+
     return (
-      <div ref={setNodeRef} {...attributes} {...listeners} style={style}>
+      <div ref={setNodeRef} {...attributes} style={style}>
         <div className={styles.image__wrapper}>
-          {/* <input type="checkbox" checked={image.selected} id={image.id} /> */}
+          <input
+            className={styles.checkbox}
+            type="checkbox"
+            checked={image.selected}
+            id={image.id}
+            onChange={handleCheckboxClick}
+          />
           <Image
             src={image.src}
             alt={`image ${image.id}`}
             width={150}
             height={150}
             draggable={true}
+            {...listeners}
           />
         </div>
       </div>
@@ -57,26 +81,25 @@ export default function Home() {
     const newImages = images.filter((image) => image.id !== id);
     console.log(newImages);
   }
-  function countSelectedImageNumber() {
-    const selectedImages = images.filter((image) => image.selected);
-    return selectedImages.length;
-  }
-  function getCheckedInputIds() {
-    const selectedImages = images.filter((image) => image.selected);
-    return selectedImages.map((image) => image.id);
-  }
+
   return (
     <main>
-      <div>
-        <div>N Selected Delete</div>
-      </div>
       <div className={styles.container}>
-        <div className={styles.image__gallery}>
-          <DndContext onDragEnd={onDragEnd} collisionDetection={closestCenter}>
-            <SortableContext strategy={rectSortingStrategy} items={images}>
-              <ImageMap />
-            </SortableContext>
-          </DndContext>
+        <div className={styles.whole__section}>
+          <HeadSection
+            selectedItems={selectedItems}
+            deleteImageById={deleteImageById}
+          />
+          <div className={styles.image__gallery}>
+            <DndContext
+              onDragEnd={onDragEnd}
+              collisionDetection={closestCenter}
+            >
+              <SortableContext strategy={rectSortingStrategy} items={images}>
+                <ImageMap />
+              </SortableContext>
+            </DndContext>
+          </div>
         </div>
       </div>
     </main>
