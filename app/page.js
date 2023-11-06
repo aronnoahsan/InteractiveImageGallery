@@ -15,8 +15,7 @@ import HeadSection from "@/component/HeadSection";
 
 export default function Home() {
   const [images, setImages] = useState(data);
-  const [selectedImages, setSelectedImages] = useState([]); // [1,2,3,4,5
-  // const selectedImages = [];
+  const selectedImages = [];
   function onDragEnd(event) {
     const { active, over } = event;
     if (active.id === over.id) return;
